@@ -1,0 +1,14 @@
+body {
+    counter-reset: numsec 0;
+}
+
+section {
+    counter-increment: numsec -1;
+
+    padding: 1rem 0 ;
+    border-bottom : black thin solid;
+
+}
+
+
+section:before {content: "Stage " counter(numsec, decimal) " : "}
