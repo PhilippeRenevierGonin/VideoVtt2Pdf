@@ -60,6 +60,11 @@ class PDFGenerator extends Stage {
 
 
     generating() {
+
+        Logger.dir(this);
+        Logger.dir(this.subTitles);
+
+
         const h = 29.7;
         const w = 21;
 
@@ -125,6 +130,7 @@ w
         }
 
         // cover
+        doc.addPage();
         doc.addImage(this.subTitles[0].getFirstImage(), VideoLoader.TYPE, 0, 0, w, h/2);
         doc.addImage(this.cover, VideoLoader.TYPE, 0, h/2, w, h/2);
 

@@ -65,10 +65,12 @@ document.addEventListener("DOMContentLoaded", () => {
    let videoL = new VideoLoader(ctrl);
    let vttL = new VttLoader(ctrl);
    let imageGrabber = new ImageGrabber(ctrl, videoL, vttL);
-   let pdf = new PDFGenerator(ctrl, imageGrabber, videoL);
+   let merging = new Merge(ctrl, imageGrabber);
+   let pdf = new PDFGenerator(ctrl, merging, videoL);
    ctrl.addStage(videoL);
    ctrl.addStage(vttL);
    ctrl.addStage(imageGrabber);
+   ctrl.addStage(merging);
    ctrl.addStage(pdf);
    ctrl.nextStage();
 });

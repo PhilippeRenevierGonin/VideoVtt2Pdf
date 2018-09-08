@@ -68,51 +68,23 @@ class ImageGrabber extends Stage {
         else {
             this.section.innerHTML = "grabbing is finished, now merging";
             Logger.log(this.section.innerHTML);
-            this.merge();
+            this.ctrl.finishingStage(this);
         }
 
     }
 
-    merge() {
-        let length = this.subTitles.length;
-        Logger.log(this.width + " / "+this.height);
-        const threshold = {threshold: 20, margin: 0.001}; // @todo savoir le bruit moyen de deux images identiques ?
-
-        for(let i = length-1; i >= 0; i--) {
-
-            this.section.innerHTML = "looking for merging images of subtitle "+i+"";
-            Logger.log(this.section.innerHTML);
-
-
-            let s = this.subTitles[i];
-            // if (s.getFirstImage() == s.getLastImage()) {
-            let equal = pixelmatch(s.getFirstRawImage(), s.getLastRawImage(), this.width, this.height, threshold);
-            Logger.log("equal = "+equal);
-            if (equal) {
-                s.removeLastImage();
-            }
-
-            if (i < length-1) {
-
-                this.section.innerHTML = "looking for merging subtitles "+i+" and "+(i+1);
-                Logger.log(this.section.innerHTML);
-
-
-                // if (s.getFirstImage() == this.subTitles[i+1].getFirstImage()) {
-                equal = pixelmatch(s.getFirstRawImage(), this.subTitles[i+1].getFirstRawImage(), this.width, this.height, threshold);
-                if (equal) {
-                    s.addText(this.subTitles[i+1].text);
-                    this.subTitles.splice(i+1, 1);
-                }
-            }
-        }
-
-        this.ctrl.finishingStage(this);
-    }
 
 
     getSubTitles() {
         return this.subTitles;
+    }
+
+    getWidth() {
+        return this.width;
+    }
+
+    getHeight() {
+        return this.height;
     }
 
 

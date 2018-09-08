@@ -74,6 +74,14 @@ class SubTitle {
         this.removeImage(1);
     }
 
+    keepLastImage() {
+        if (this.img.length >1) {
+            this.img[0] = this.img[1] ;
+            if (this.rawImg.length >1) this.rawImg[0] = this.rawImg[1] ;
+            this.removeLastImage();
+        }
+    }
+
     removeImage(i) {
         if (i < this.img.length) {
             this.img.splice(i, 1);

@@ -6,12 +6,11 @@
 
 function pixelmatch(img1, img2, width, height, options) {
 
-    if (img1.length !== img2.length) throw new Error('Image sizes do not match.');
 
     if (!options) options = {};
 
     let threshold = options.threshold === undefined ? 10 : options.threshold;
-    let margin = options.margin === undefined ? 0.001 : options.margin;
+    let margin = options.margin === undefined ? 0.00001 : options.margin;
 
     margin = height*width*margin;
 
@@ -51,7 +50,7 @@ function colorDelta(img1, img2, k) {
         b2 = img2.data[k + 2];
 
 
-    return Math.abs(r1-r2)+Math.abs(g1-g2)+Math.abs(g1-g2);
+    return Math.abs(r1-r2)+Math.abs(g1-g2)+Math.abs(b1-b2);
 }
 
 
